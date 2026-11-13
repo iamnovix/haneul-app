@@ -1,0 +1,18 @@
+{
+  "id": "https://013.mcocoa.kr/",
+  "name": "하늘유치원",
+  "short_name": "하늘유치원",
+  "description": "하늘유치원 소식, 일정, 앨범을 확인하세요.",
+  "lang": "ko",
+  "start_url": "https://013.mcocoa.kr/",
+  "scope": "https://013.mcocoa.kr/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

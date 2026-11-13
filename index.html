@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>하늘유치원 앱 설치</title>
+<meta name="description" content="하늘유치원 앱을 휴대폰에 설치하는 방법을 안내합니다.">
+<meta property="og:title" content="하늘유치원 앱 설치 안내">
+<meta property="og:description" content="아이폰·안드로이드에서 하늘유치원 앱을 설치하세요.">
+<meta property="og:image" content="icons/icon-512.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>
+  :root {
+    --bg: #fff8ec;
+    --card: #ffffff;
+    --text: #1f2a37;
+    --muted: #5b6676;
+    --blue: #175ca8;
+    --orange: #f0a52a;
+    --red: #e9532b;
+    --line: #f0e3cc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #151a21; --card: #1e252f; --text: #eef2f6; --muted: #a7b1bf; --line: #2c3542; --blue: #5b9be6;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #151a21; --card: #1e252f; --text: #eef2f6; --muted: #a7b1bf; --line: #2c3542; --blue: #5b9be6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+    line-height: 1.55; -webkit-text-size-adjust: 100%;
+  }
+  main { max-width: 480px; margin: 0 auto; padding: 32px 16px 48px; }
+  header { text-align: center; margin-bottom: 24px; }
+  header img { width: 104px; height: 104px; border-radius: 24px; box-shadow: 0 6px 20px rgba(0,0,0,.12); background: #fff; }
+  h1 { font-size: 24px; margin: 16px 0 4px; }
+  header p { margin: 0; color: var(--muted); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px; margin-bottom: 16px; }
+  .card h2 { font-size: 18px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+  .badge { font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--orange); color: #3a2500; }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+    padding: 14px 16px; border-radius: 14px; border: 0; font-size: 17px; font-weight: 700;
+    text-decoration: none; cursor: pointer; font-family: inherit;
+  }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-secondary { background: transparent; color: var(--blue); border: 1.5px solid var(--blue); margin-top: 10px; }
+  ol { margin: 0; padding: 0; list-style: none; counter-reset: step; }
+  ol li { counter-increment: step; position: relative; padding: 0 0 14px 40px; }
+  ol li:last-child { padding-bottom: 0; }
+  ol li::before {
+    content: counter(step); position: absolute; left: 0; top: 0; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--orange); color: #3a2500; font-weight: 800; display: grid; place-items: center; font-size: 15px;
+  }
+  .ico { display: inline-block; width: 20px; height: 20px; vertical-align: -4px; color: var(--blue); }
+  .note { font-size: 14px; color: var(--muted); margin: 12px 0 0; }
+  .notice { background: #fff1e8; border: 1px solid #ffd2bf; color: #8a2d0e; border-radius: 14px; padding: 14px 16px; margin-bottom: 16px; font-size: 15px; }
+  @media (prefers-color-scheme: dark) { .notice { background: #3a2318; border-color: #6a3a24; color: #ffd9c7; } }
+  .hidden { display: none !important; }
+  footer { text-align: center; font-size: 13px; color: var(--muted); margin-top: 24px; }
+  .toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: #1f2a37; color: #fff;
+           padding: 10px 16px; border-radius: 999px; font-size: 14px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="icons/icon-512.png" alt="하늘유치원 로고">
+    <h1>하늘유치원 앱</h1>
+    <p>유치원 소식·일정·앨범을 휴대폰에서 바로 확인하세요</p>
+  </header>
+
+  <!-- 카카오톡 등 앱 안의 브라우저로 열었을 때 -->
+  <div id="inapp" class="notice hidden">
+    지금은 카카오톡 같은 앱 안의 브라우저로 열려 있어 설치가 되지 않습니다.
+    아래 버튼을 눌러 <strong id="inappTarget">기본 브라우저</strong>에서 다시 열어 주세요.
+    <button id="openExternal" class="btn btn-primary" style="margin-top:12px">기본 브라우저로 열기</button>
+    <button id="copyLink" class="btn btn-secondary">이 페이지 주소 복사</button>
+  </div>
+
+  <!-- 안드로이드 -->
+  <section id="android" class="card">
+    <h2>안드로이드 <span class="badge">Play 스토어</span></h2>
+    <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.cocoa.cocoa_4736_68c101fa0e6c2">Play 스토어에서 설치하기</a>
+    <p class="note">버튼을 누른 뒤 ‘설치’를 눌러 주세요.</p>
+  </section>
+
+  <!-- 아이폰 -->
+  <section id="ios" class="card">
+    <h2>아이폰 <span class="badge">홈 화면에 추가</span></h2>
+    <ol>
+      <li>아래 <strong>홈페이지 열기</strong> 버튼을 눌러 <strong>Safari</strong>에서 홈페이지를 엽니다.</li>
+      <li>화면 아래(또는 위)의 공유 버튼
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="공유"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>
+        을 누릅니다. <span class="note" style="display:block;margin:4px 0 0">버튼이 안 보이면 ‘…’ 메뉴를 눌러 주세요.</span></li>
+      <li>목록을 내려 <strong>‘홈 화면에 추가’</strong>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-label="추가"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg>
+        를 누릅니다.</li>
+      <li>오른쪽 위 <strong>‘추가’</strong>를 누르면 홈 화면에 하늘유치원 아이콘이 생깁니다.</li>
+    </ol>
+    <a class="btn btn-primary" style="margin-top:18px" href="https://013.mcocoa.kr/">홈페이지 열기</a>
+    <p class="note">앱스토어 앱은 준비 중입니다. 출시되면 이 페이지에서 안내해 드릴게요.</p>
+  </section>
+
+  <footer>하늘유치원</footer>
+</main>
+<div id="toast" class="toast" role="status"></div>
+
+<script>
+(function () {
+  var ua = navigator.userAgent || "";
+  var isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var isAndroid = /Android/i.test(ua);
+  var isKakao = /KAKAOTALK/i.test(ua);
+  var isInApp = isKakao || /NAVER\(inapp|Instagram|FBAN|FBAV|Line\/|DaumApps|everytimeApp/i.test(ua);
+  var pageUrl = location.href;
+
+  var android = document.getElementById("android");
+  var ios = document.getElementById("ios");
+  var main = document.querySelector("main");
+
+  // 기기에 맞는 안내를 맨 위로
+  if (isIOS) { main.insertBefore(ios, android); }
+
+  if (isInApp && (isIOS || isAndroid)) {
+    document.getElementById("inapp").classList.remove("hidden");
+    document.getElementById("inappTarget").textContent = isIOS ? "Safari" : "Chrome";
+  }
+
+  function toast(msg) {
+    var t = document.getElementById("toast");
+    t.textContent = msg; t.classList.add("show");
+    setTimeout(function () { t.classList.remove("show"); }, 2200);
+  }
+
+  document.getElementById("openExternal").addEventListener("click", function () {
+    if (isKakao) {
+      location.href = "kakaotalk://web/openExternal?url=" + encodeURIComponent(pageUrl);
+    } else if (isAndroid) {
+      location.href = "intent://" + pageUrl.replace(/^https?:\/\//, "") + "#Intent;scheme=https;package=com.android.chrome;end";
+    } else {
+      toast("오른쪽 아래 ‘…’ 메뉴에서 ‘Safari로 열기’를 눌러 주세요");
+    }
+  });
+
+  document.getElementById("copyLink").addEventListener("click", function () {
+    function done() { toast("주소를 복사했습니다. 브라우저 주소창에 붙여 넣어 주세요"); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(pageUrl).then(done, function () { prompt("주소를 길게 눌러 복사하세요", pageUrl); });
+    } else {
+      prompt("주소를 길게 눌러 복사하세요", pageUrl);
+    }
+  });
+})();
+</script>
+</body>
+</html>
