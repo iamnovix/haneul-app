@@ -85,11 +85,10 @@
     <button id="copyLink" class="btn btn-secondary">이 페이지 주소 복사</button>
   </div>
 
-  <!-- 안드로이드 -->
-  <section id="android" class="card">
-    <h2>안드로이드 <span class="badge">Play 스토어</span></h2>
-    <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.cocoa.cocoa_4736_68c101fa0e6c2">Play 스토어에서 설치하기</a>
-    <p class="note">버튼을 누른 뒤 ‘설치’를 눌러 주세요.</p>
+  <!-- iOS 앱스토어 앱 안내 -->
+  <section id="appstore" class="card">
+    <h2>iOS 앱 <span class="badge">심사중</span></h2>
+    <p style="margin:0">앱스토어 앱은 준비 중입니다. 출시되면 이 페이지에서 안내해 드릴게요.</p>
   </section>
 
   <!-- 아이폰 -->
@@ -106,7 +105,6 @@
       <li>오른쪽 위 <strong>‘추가’</strong>를 누르면 홈 화면에 하늘유치원 아이콘이 생깁니다.</li>
     </ol>
     <a class="btn btn-primary" style="margin-top:18px" href="https://013.mcocoa.kr/">홈페이지 열기</a>
-    <p class="note">앱스토어 앱은 준비 중입니다. 출시되면 이 페이지에서 안내해 드릴게요.</p>
   </section>
 
   <footer>하늘유치원</footer>
@@ -121,13 +119,6 @@
   var isKakao = /KAKAOTALK/i.test(ua);
   var isInApp = isKakao || /NAVER\(inapp|Instagram|FBAN|FBAV|Line\/|DaumApps|everytimeApp/i.test(ua);
   var pageUrl = location.href;
-
-  var android = document.getElementById("android");
-  var ios = document.getElementById("ios");
-  var main = document.querySelector("main");
-
-  // 기기에 맞는 안내를 맨 위로
-  if (isIOS) { main.insertBefore(ios, android); }
 
   if (isInApp && (isIOS || isAndroid)) {
     document.getElementById("inapp").classList.remove("hidden");
